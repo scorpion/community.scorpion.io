@@ -1,0 +1,43 @@
+head:
+  tags:
+    - groups
+  summary: check if a group exists
+  parameters:
+    - in: path
+      name: slug
+      schema:
+        type: string
+      required: true
+      description: group slug (that also acts as its identifier) to check
+      example: my-test-group
+  responses:
+    '200':
+      description: group found
+    '404':
+      description: group not found
+delete:
+  tags:
+    - groups
+  summary: Delete an existing group
+  description: This operation deletes an existing group, all members within this group will cease to be members after the group is deleted.
+  parameters:
+    - in: path
+      name: slug
+      schema:
+        type: string
+      required: true
+      description: slug of the group you wish to delete
+      example: my-test-group
+  responses:
+    '200':
+      description: group successfully deleted
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                $ref: ../../components/schemas/Status.yaml#/Status
+              response:
+                type: object
+                properties: {}
