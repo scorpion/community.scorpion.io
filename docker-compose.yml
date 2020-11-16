@@ -30,6 +30,7 @@ services:
       - "traefik.http.routers.community.rule=Host(`${DOMAIN}`)"
       - "traefik.http.routers.community.tls=${ENABLE_TLS}"
       - "traefik.http.routers.community.tls.certresolver=${CERTRESOLVER}"
+      - "traefik.http.routers.community.entrypoints=https"
 
   db:
     image: postgres:13.1-alpine
