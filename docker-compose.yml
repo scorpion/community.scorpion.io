@@ -4,6 +4,8 @@ networks:
   traefik-proxy-network:
     external: true
     name: proxy-net
+  backend:
+    driver: bridge
 
 services:
   node:
@@ -13,6 +15,7 @@ services:
       - db
     networks:
       - traefik-proxy-network
+      - backend
     expose:
       - 38327 # use a reverse proxy like Traefik
     ports:
@@ -37,6 +40,8 @@ services:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
       - POSTGRES_DB
+    networks:
+      - backend
     volumes:
       - postgresql:/data/db
     ports:
